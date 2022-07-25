@@ -1,33 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <Windows.h>
+#include "Baseball.h"
 
-void menu()
-{
-	;
-}
-
-void select_menu()
-{
-	char menu = 0;
-
-	while (1) {
-		scanf_s("%c", &menu, 1);
-		switch (menu)
-		{
-		case 'Q':
-		case 'q':
-			exit(1);
-			break;
-		case '1':
-			return;
-			break;
-		default:
-			break;
-		}
-	}
-}
 
 void get_rand(int* arr, int len)
 {
@@ -57,7 +29,7 @@ int main()
 	int answer_c[4] = { 0 };
 	int answer_p[4] = { 0 };
 
-	select_menu();
+	
 
 	get_rand(answer_c, sizeof(answer_c) / sizeof(int));
 
