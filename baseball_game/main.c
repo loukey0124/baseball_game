@@ -1,43 +1,44 @@
 #include "Baseball.h"
 
-
-void get_rand(int* arr, int len)
-{
-	srand((unsigned)time(NULL));
-	
-	for (int i = 0; i < len; i++) {
-		arr[i] = (rand() % 9) + 1;
-
-		for (int j = 0; j < i; j++) {
-			if (arr[i] == arr[j]) {
-				i--;
-				break;
-			}
-		}
-	}
-}
-
-void get_ans(int* arr, int len)
-{
-	for (int i = 0; i < len; i++) {
-		scanf_s("%1d", &arr[i]);
-	}
-}
-
 int main()
 {
 	int answer_c[4] = { 0 };
 	int answer_p[4] = { 0 };
+	while (1) {
+		get_rand(answer_c);
 
-	
+		for (int i = 0; i < 4; i++)
+			printf("%d ", answer_c[i]);
+		printf("´ä\n");
 
-	get_rand(answer_c, sizeof(answer_c) / sizeof(int));
+		int strike = 0, ball = 0, count;
+		for (count = 0; count < 4; count++) {
+			get_ans(answer_p);
+			for (int i = 0; i < LEN; i++) {
+				if (answer_c[i] == answer_p[i]) {
+					strike++;
+					continue;
+				}
 
-	for (int i = 0; i < 4; i++)
-		printf("%d ", answer_c[i]);
-	get_ans(answer_p, sizeof(answer_p) / sizeof(int));
+				for (int j = 0; j < LEN; j++) {
+					if (answer_c[j] == answer_p[i]) {
+						ball++;
+						break;
+					}
+				}
+			}
 
-	for (int i = 0; i < 4; i++)
-		printf("%d ", answer_p[i]);
+			printf("strike:%d, ball:%d\n", strike, ball);
+			if (4 == strike) {
+				Sleep(1000);
+				break;
+			}
+			strike = 0;
+			ball = 0;
+			
+		}
+
+		
+	}
 	return 0;
 }

@@ -1,6 +1,6 @@
 #include "Baseball.h"
 
-void clear_buffer()
+void ClearBuffer()
 {
 	while ('\n' != getchar());
 }
@@ -17,25 +17,37 @@ void SelectMenu()
 	do
 	{
 		scanf_s("%c", &menu, 1);
+		ClearBuffer();
+
 		switch (menu)
 		{
+		case 1:
+			break;
 		default:
 			break;
 		}
 	} while ('q' == menu || 'Q' == menu);
-	while (1) {
-		scanf_s("%c", &menu, 1);
-		switch (menu)
-		{
-		case 'Q':
-		case 'q':
-			exit(1);
-			break;
-		case '1':
-			return;
-			break;
-		default:
-			break;
+}
+
+void get_rand(int* arr)
+{
+	srand((unsigned)time(NULL));
+
+	for (int i = 0; i < LEN; i++) {
+		arr[i] = (rand() % 9) + 1;
+
+		for (int j = 0; j < i; j++) {
+			if (arr[i] == arr[j]) {
+				i--;
+				break;
+			}
 		}
+	}
+}
+
+void get_ans(int* arr)
+{
+	for (int i = 0; i < LEN; i++) {
+		scanf_s("%1d", &arr[i]);
 	}
 }
